@@ -10,26 +10,26 @@ public class MovPlayer : MonoBehaviour
     float movZ;
     float turnX;
 
-    //Animator anim;
+    Animator anim;
     // Start is called before the first frame update
     void Start()
     {
         rbPlayer = GetComponent<Rigidbody>();
-       // anim = GetComponent<Animator>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        movZ = Input.GetAxisRaw("Vertical");
-        turnX = Input.GetAxisRaw("Horizontal");
+        movZ = Input.GetAxis("Vertical");
+        turnX = Input.GetAxis("Horizontal");
     }
 
     private void FixedUpdate()
     {
         Move();
         Turn();
-        //Animating(movZ, turnX);
+        Animating(movZ, turnX);
         //rbPlayer.MovePosition(rbPlayer.position + speed * Time.fixedDeltaTime * transform.forward * movZ);
         //rbPlayer.MoveRotation(rbPlayer.rotation * Quaternion.Euler(0, turnX * turnSpeed * Time.fixedDeltaTime, 0 ));
     }
@@ -46,10 +46,10 @@ public class MovPlayer : MonoBehaviour
         rbPlayer.MoveRotation(rbPlayer.rotation * Quaternion.Euler(0, turn, 0));
     }
 
-    //void Animating(float h, float v)
-    //{
-    //    bool walking = !((v == 0) && (h == 0));
-    //    anim.SetBool("IsWalking", walking);
-    //}
+    void Animating(float z, float x)
+    {
+        anim.SetFloat("SpeedZ_f", z);
+        anim.SetFloat("SpeedX_f", x);
+    }
 
 }
