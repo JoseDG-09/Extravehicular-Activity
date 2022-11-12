@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class Statistics : MonoBehaviour
 {
+    public float enemyDamage = 5f;
+
     [Header("Aumentar al coger")]
     public int waterValue = 10;
     public int bulletValue = 10;
@@ -21,15 +23,28 @@ public class Statistics : MonoBehaviour
     public Color fullWaterColor = Color.blue;
     public Color zeroWaterColor = Color.red;
 
+    [Header("UI Life")]
+    public float startinLife;
+    public Slider sliderLife;
+    public Image fillImageLife;
+    public Color fullLifeColor = Color.green;
+    public Color zeroLifeColor = Color.red;
+
+    [Header("UI Bullet")]
+    public Text textBullet;
+
     int bullet = 0;
     //int water = 100;
     private float currentWater;
-    int life = 70;
+    float currenLife;
 
     private void Start()
     {
+        SetBullet();
         currentWater = startinWater;
+        currenLife = startinLife;
         SetWaterUI();
+        SetLifeUI();
         InvokeRepeating("StatsDecrease", 2f, 2f);
 
     }
@@ -38,10 +53,11 @@ public class Statistics : MonoBehaviour
     {
         if (currentWater <= 0)
         {
-            life -= lifeDecrease;
-            if(life <= 0)
+            currenLife -= lifeDecrease;
+            SetLifeUI();
+            if (currenLife <= 0)
             {
-                Debug.Log("Life is: " + life);
+                Debug.Log("Life is: " + currenLife);
                 Debug.Log("Game Over");
             }
         }
@@ -53,13 +69,24 @@ public class Statistics : MonoBehaviour
         }
         
         Debug.Log("Water is: " + currentWater);
-        Debug.Log("Life is: " + life);
+        Debug.Log("Life is: " + currenLife);
     }
 
     private void SetWaterUI()
     {
         slider.value = currentWater;
         fillImage.color = Color.Lerp(zeroWaterColor, fullWaterColor, currentWater / startinWater);
+    }
+
+    private void SetLifeUI()
+    {
+        sliderLife.value = currenLife;
+        fillImageLife.color = Color.Lerp(zeroLifeColor, fullLifeColor, currenLife / startinLife);
+    }
+
+    private void SetBullet()
+    {
+        textBullet.text = "Balas: " + bullet.ToString();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -71,17 +98,27 @@ public class Statistics : MonoBehaviour
             Destroy(other.gameObject);
         }        
 
-        if (other.CompareTag("Life") && life < 100)
+        if (other.CompareTag("Life") && currenLife < 100)
         {
             Debug.Log("More Life");
-            life += lifeValue;
+            currenLife += lifeValue;
+            SetLifeUI();
             Destroy(other.gameObject);
+        }
+
+        if (other.CompareTag("Enemy"))
+        {
+            Debug.Log("Less Life");
+            currenLife -= enemyDamage;
+            SetLifeUI();
+            //Destroy(other.gameObject);
         }
 
         if (other.CompareTag("Bullet"))
         {
             Debug.Log("More Bullets");
             bullet += bulletValue;
+            SetBullet();
             Destroy(other.gameObject);
         }
     }
