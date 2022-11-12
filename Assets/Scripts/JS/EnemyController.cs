@@ -9,7 +9,8 @@ public class EnemyController : MonoBehaviour
     public float speed = 5;
     public NavMeshAgent agent;
     private Animator animator;
-    private float x, y = 1;
+    private float x, y = 0;
+    public bool attack = true;
 
     // Start is called before the first frame update
     void Start()
@@ -22,10 +23,15 @@ public class EnemyController : MonoBehaviour
     {
         agent.speed = speed;
         agent.SetDestination(objective.position);
-        if (agent.velocity == Vector3.zero)
+        if (agent.velocity == Vector3.zero && attack)
         {
             y = 0;
             x = 1;
+        }
+        else if (agent.velocity == Vector3.zero && !attack)
+        {
+            y = 0;
+            x = 0;
         }
         else
         {
