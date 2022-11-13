@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MovPlayer : MonoBehaviour
 {
+   
+
     public float speed;
     public float turnSpeed;
     Rigidbody rbPlayer;
@@ -23,6 +25,8 @@ public class MovPlayer : MonoBehaviour
     {
         movZ = Input.GetAxis("Vertical");
         turnX = Input.GetAxis("Horizontal");
+
+       
     }
 
     private void FixedUpdate()
