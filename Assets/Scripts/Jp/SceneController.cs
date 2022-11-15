@@ -30,6 +30,7 @@ public class SceneController : MonoBehaviour
         //SceneManager.LoadScene(nextSceneIndex);
     }
 
+
     public IEnumerator FirstLoad(int sceneIndex)
     {
         transitionAnimator.SetTrigger("StartTransition");
@@ -49,5 +50,22 @@ public class SceneController : MonoBehaviour
         transitionAnimator.SetTrigger("StartTransition");
         yield return new WaitForSeconds(transitionTime);
         SceneManager.LoadScene(sceneIndex);
+    }
+
+    public void LoadStartScene()
+    {
+        StartCoroutine(StartScene(0));
+    }
+
+    public void LoadCredi()
+    {
+        StartCoroutine(Credits());
+    }
+
+    public IEnumerator Credits()
+    {
+        transitionAnimator.SetTrigger("StartTransition");
+        yield return new WaitForSeconds(transitionTime);
+        SceneManager.LoadScene("Credits");
     }
 }
