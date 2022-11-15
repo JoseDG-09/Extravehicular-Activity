@@ -12,14 +12,39 @@ public class SceneController : MonoBehaviour
     {
         transitionAnimator = GetComponentInChildren<Animator>();
     }
-    public void LoadNextScene()
+    public void LoadNextScene(int sceneIndex)
     {
-        int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
+        if (sceneIndex == 0)
+        {
+            StartCoroutine(FirstLoad(sceneIndex));
+        }
+        else if (sceneIndex == 1)
+        {
+            StartCoroutine(StartScene(sceneIndex));
+        }
+        else if (sceneIndex == 2)
+        {
+            StartCoroutine(GameOver(sceneIndex));
+        }
+        /*int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;*/
         //SceneManager.LoadScene(nextSceneIndex);
-        StartCoroutine(SceneLoad(nextSceneIndex));
     }
 
-    public IEnumerator SceneLoad(int sceneIndex)
+    public IEnumerator FirstLoad(int sceneIndex)
+    {
+        transitionAnimator.SetTrigger("StartTransition");
+        yield return new WaitForSeconds(transitionTime);
+        SceneManager.LoadScene(sceneIndex);
+    }
+
+    public IEnumerator StartScene(int sceneIndex)
+    {
+        transitionAnimator.SetTrigger("StartTransition");
+        yield return new WaitForSeconds(transitionTime);
+        SceneManager.LoadScene(sceneIndex);
+    }
+
+    public IEnumerator GameOver(int sceneIndex)
     {
         transitionAnimator.SetTrigger("StartTransition");
         yield return new WaitForSeconds(transitionTime);

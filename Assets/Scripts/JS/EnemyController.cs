@@ -5,17 +5,20 @@ using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
-    public Transform objective;
+    private Transform objective;
     public float speed = 5;
-    public NavMeshAgent agent;
+    private NavMeshAgent agent;
     private Animator animator;
     private float x, y = 0;
-    public bool attack = true;
+    public bool attack;
 
     // Start is called before the first frame update
     void Start()
     {
+        objective = GameObject.FindGameObjectWithTag("Player").transform;
+        agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
+        attack = true;
     }
 
     // Update is called once per frame
@@ -40,5 +43,10 @@ public class EnemyController : MonoBehaviour
         }
         animator.SetFloat("speedY", y);
         animator.SetFloat("speedX", x);
+    }
+
+    public void ConfirmDead()
+    {
+        attack = false;
     }
 }

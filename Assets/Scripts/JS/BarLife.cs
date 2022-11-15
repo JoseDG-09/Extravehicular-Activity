@@ -27,6 +27,11 @@ public class BarLife : MonoBehaviour
         }
     }
 
+    void ReciveDamage(float damage)
+    {
+        actualLife -= damage;
+    }
+
     public void ConfirmLife()
     {
         imageBarLife.fillAmount = actualLife / lifeMax;

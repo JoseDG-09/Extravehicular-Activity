@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/JpInicio.unity
     guid: 0ad165e498577bb4b993483c4a5e8f59
   - enabled: 1
-    path: Assets/Scenes/Jp1.unity
-    guid: 944832f769ece1649898abfc22133b86
+    path: Assets/Lunar Landscape 3D/Scenes/LunarLandscape3D.unity
+    guid: f4021bc829b444148a3959ec85eeeceb
+  - enabled: 1
+    path: Assets/Scenes/GameOver.unity
+    guid: 1bdb14769edc06e42b65f2d19de7a366
   m_configObjects: {}

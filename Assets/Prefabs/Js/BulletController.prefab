@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6257487704967634747}
   - component: {fileID: 5112096136573395294}
   - component: {fileID: 602437989219421599}
+  - component: {fileID: 1708708281392910087}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Untagged
@@ -92,11 +93,24 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1441217651025142568}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1708708281392910087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1441217651025142568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61cc5faef16400d47aab52bf4d02d429, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 5
 --- !u!1 &5405998224231233534
 GameObject:
   m_ObjectHideFlags: 0
@@ -107,7 +121,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3458209581540296905}
   - component: {fileID: 2799943883289094914}
-  - component: {fileID: 6152736574658816693}
+  - component: {fileID: 1479160111410301589}
   m_Layer: 0
   m_Name: BulletController
   m_TagString: Untagged
@@ -147,7 +161,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &6152736574658816693
+--- !u!114 &1479160111410301589
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -160,4 +174,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   power: 100
-  lifeTime: 5
+  lifeTime: 2
