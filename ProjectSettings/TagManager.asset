@@ -9,6 +9,7 @@ TagManager:
   - Life
   - Enemy
   - SceneManager
+  - Recolect
   layers:
   - Default
   - TransparentFX
